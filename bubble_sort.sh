@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Function to sort an array using bubble sort
+# Bubble sort function
 bubble_sort() {
-    local -a arr=(882 325 169 627 347 504 67)
-    # Iterate over the array, swapping adjacent elements if they are out of order
+    local -a arr=("$@")
+    # Сonsecutive comparison of adjacent array elements
     for ((i = 0; i < ${#arr[@]}; i++)); do
         for ((j = 0; j < ${#arr[@]}-1; j++)); do
             if [[ ${arr[j]} -gt ${arr[j+1]} ]]; then
-                # Swap elements
+                # Swap items
                 temp=${arr[j]}
                 arr[j]=${arr[j+1]}
                 arr[j+1]=$temp
@@ -17,4 +17,4 @@ bubble_sort() {
     echo "${arr[*]}"
 }
 
-bubble_sort
+bubble_sort "$@"
