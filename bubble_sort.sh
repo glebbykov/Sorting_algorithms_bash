@@ -2,7 +2,7 @@
 
 file=$1
 
-# check if file exists
+# Check if the file exists before attempting to read it
 if [ ! -f $file ]; then
   echo "Error: file not found"
   exit 1
