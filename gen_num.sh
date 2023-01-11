@@ -17,4 +17,4 @@ fi
 
 echo "10000 random numbers between -100000 and 100000 have been generated and saved in $filename"
 
-./del.sh random_numbers.txt
+./del_no_num.sh random_numbers.txt
