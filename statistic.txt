@@ -1,0 +1,25 @@
+Script: ./bubble_sort.sh
+Time taken: 34 seconds
+Number of elements: 2000
+Cycle number: 1006397
+Script: ./bubble_sort.sh
+Time taken: 36 seconds
+Number of elements: 2000
+Cycle number: 1019662
+______________________________
+Script: ./quick_sort.sh
+Time taken: 0 seconds
+Number of elements: 2000
+Cycle number: 0
+Script: ./quick_sort.sh
+Time taken: 0 seconds
+Number of elements: 2000
+Cycle number: 0
+Script: ./quick_sort.sh
+Time taken: 0 seconds
+Number of elements: 2000
+Cycle number: 0
+Script: ./quick_sort.sh
+Time taken: 0 seconds
+Number of elements: 2000
+Cycle number: 0

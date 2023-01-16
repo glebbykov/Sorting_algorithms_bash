@@ -30,25 +30,30 @@ counter=0
 # Get the current time in seconds since the epoch
 start_time=$(date +%s)
 
-# bubble sort function
-bubble_sort() {
-  local -n arr=$1
-  local counter=0
-  for ((i = 0; i < ${#arr[@]}; i++)); do
-    for ((j = 0; j < ${#arr[@]}-1; j++)); do
-      if (( ${arr[j]} > ${arr[j+1]} )); then
-        temp=${arr[j]}
-        arr[j]=${arr[j+1]}
-        arr[j+1]=$temp
-        # increment the counter
-        counter=$((counter + 1))
-      fi
-    done
-  done
-  echo "${arr[*]}"
+quicksort() {
+    local -n arr=$1
+    local counter=0
+    if (( ${#arr[@]} <= 1 )); then
+        return
+    else
+        local pivot=${arr[0]}
+        local -a left=()
+        local -a right=()
+        for ((i = 1; i < ${#arr[@]}; i++)); do
+            (( ${arr[i]} <= pivot )) && left+=("${arr[i]}") || right+=("${arr[i]}")
+            counter=$((counter + 1))
+        done
+        quicksort "${left[@]}"
+        quicksort "${right[@]}"
+        local -i index=0
+        for i in "${left[@]}" "$pivot" "${right[@]}"; do
+            arr[index++]="$i"
+        done
+    fi
 }
 
-bubble_sort numbers
+quicksort "${numbers[@]}"
+
 
 # Get the current time in seconds since the epoch
 end_time=$(date +%s)
