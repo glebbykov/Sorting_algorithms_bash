@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 file=$1
@@ -29,31 +28,40 @@ done
 # Get the current time in seconds since the epoch
 start_time=$(date +%s)
 
-# quick sort function
-quicksort() {
-    local -a arr=("$@")
-    if (( ${#arr[@]} <= 1 )); then
-        echo "${arr[*]}"
-    else
-        local pivot=${arr[0]}
-        local -a left=()
-        local -a right=()
-        for ((i = 1; i < ${#arr[@]}; i++)); do
-            if (( ${arr[i]} <= pivot )); then
-                left+=("${arr[i]}")
-                counter=$((counter + 1))
-            else
-                right+=("${arr[i]}")
-                counter=$((counter + 1))
-            fi
+# Radix sort function
+radix_sort() {
+    local -a nums=("$@")
+    local max_len=5
+    local radix=1
+    
+    for ((i=0; i<max_len; i++)); do
+        # Create an array for each digit (0-9)
+        for digit in {0..9}; do
+            declare -a "digit_$digit=()"
+            counter=$((counter + 1))
         done
-        left=($(quicksort "${left[@]}"))
-        right=($(quicksort "${right[@]}"))
-        echo "${left[@]}" "$pivot" "${right[@]}"
-    fi
+        
+        # Sort the numbers into the appropriate digit array
+        for num in "${nums[@]}"; do
+            local digit=$((num/radix%10))
+            eval "digit_$digit+=($num)"
+            counter=$((counter + 1))
+        done
+        
+        # Concatenate the digit arrays back into the original array
+        nums=()
+        for digit in {0..9}; do
+            eval "nums+=(\"\${digit_$digit[@]}\")"
+            counter=$((counter + 1))
+        done
+        radix=$((radix*10))
+        counter=$((counter + 1))
+    done
+    
+    echo "${nums[@]}"
 }
 
-quicksort "${numbers[@]}"
+radix_sort "${numbers[@]}"
 
 # Get the current time in seconds since the epoch
 end_time=$(date +%s)

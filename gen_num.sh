@@ -3,7 +3,7 @@
 filename=random_numbers.txt
 
 # generate 1000 random numbers
-for i in {1..2000}; do
+for i in {1..20}; do
     echo -n $((RANDOM % 200001 - 100000)) >> $filename
     echo  >> $filename
 done

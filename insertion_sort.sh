@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 file=$1
@@ -29,31 +28,29 @@ done
 # Get the current time in seconds since the epoch
 start_time=$(date +%s)
 
-# quick sort function
-quicksort() {
+# insertion sort function
+insertion_sort() {
     local -a arr=("$@")
-    if (( ${#arr[@]} <= 1 )); then
-        echo "${arr[*]}"
-    else
-        local pivot=${arr[0]}
-        local -a left=()
-        local -a right=()
-        for ((i = 1; i < ${#arr[@]}; i++)); do
-            if (( ${arr[i]} <= pivot )); then
-                left+=("${arr[i]}")
-                counter=$((counter + 1))
-            else
-                right+=("${arr[i]}")
-                counter=$((counter + 1))
-            fi
+    # Iterate through the array
+    for ((i = 1; i < ${#arr[@]}; i++)); do
+        # Store the current value
+        current_value=${arr[i]}
+        # Start the inner loop at the current position
+        j=$i
+        while (( j > 0 && ${arr[j-1]} > current_value )); do
+            # Shift elements to the right
+            arr[j]=${arr[j-1]}
+            j=$((j-1))
+            counter=$((counter + 1))
         done
-        left=($(quicksort "${left[@]}"))
-        right=($(quicksort "${right[@]}"))
-        echo "${left[@]}" "$pivot" "${right[@]}"
-    fi
+        # Insert the current value
+        arr[j]=$current_value
+    done
+    echo "${arr[*]}"
 }
 
-quicksort "${numbers[@]}"
+
+insertion_sort "${numbers[@]}"
 
 # Get the current time in seconds since the epoch
 end_time=$(date +%s)

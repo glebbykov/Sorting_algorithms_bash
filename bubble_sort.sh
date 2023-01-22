@@ -11,7 +11,8 @@ fi
 # read file into an array
 IFS=$'\n' read -d '' -r -a numbers < $file
 
-# Initialize counters2
+# Initialize counters
+counter=0
 counter2=0
 
 # check if file contains non-numeric elements
@@ -24,16 +25,12 @@ for i in "${numbers[@]}"; do
   fi
 done
 
-# Initialize counters
-counter=0
-
 # Get the current time in seconds since the epoch
 start_time=$(date +%s)
 
 # bubble sort function
 bubble_sort() {
-  local -n arr=$1
-  local counter=0
+  local -a arr=("$@")
   for ((i = 0; i < ${#arr[@]}; i++)); do
     for ((j = 0; j < ${#arr[@]}-1; j++)); do
       if (( ${arr[j]} > ${arr[j+1]} )); then
@@ -48,7 +45,7 @@ bubble_sort() {
   echo "${arr[*]}"
 }
 
-bubble_sort numbers
+bubble_sort "${numbers[@]}"
 
 # Get the current time in seconds since the epoch
 end_time=$(date +%s)
@@ -57,6 +54,7 @@ end_time=$(date +%s)
 duration=$((end_time - start_time))
 
 # Print info
+echo "______________________________" >> statistic.txt
 echo "Script: $0" >> statistic.txt
 echo "Time taken: $duration seconds" >> statistic.txt
 echo "Number of elements: $counter2" >> statistic.txt

@@ -1,25 +1,18 @@
-Script: ./bubble_sort.sh
-Time taken: 34 seconds
-Number of elements: 2000
-Cycle number: 1006397
-Script: ./bubble_sort.sh
-Time taken: 36 seconds
-Number of elements: 2000
-Cycle number: 1019662
 ______________________________
-Script: ./quick_sort.sh
+Sun Jan 22 14:24:52 UTC 2023
+Type sorting: 1
 Time taken: 0 seconds
-Number of elements: 2000
+Number of elements: 20
 Cycle number: 0
-Script: ./quick_sort.sh
+______________________________
+Sun Jan 22 14:35:03 UTC 2023
+Type sorting: 1
 Time taken: 0 seconds
-Number of elements: 2000
+Number of elements: 20
 Cycle number: 0
-Script: ./quick_sort.sh
+______________________________
+Sun Jan 22 14:35:57 UTC 2023
+Type sorting: 4
 Time taken: 0 seconds
-Number of elements: 2000
-Cycle number: 0
-Script: ./quick_sort.sh
-Time taken: 0 seconds
-Number of elements: 2000
+Number of elements: 20
 Cycle number: 0

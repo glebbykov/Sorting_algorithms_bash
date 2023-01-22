@@ -1,4 +1,3 @@
-
 #!/bin/bash
 
 file=$1
@@ -29,31 +28,28 @@ done
 # Get the current time in seconds since the epoch
 start_time=$(date +%s)
 
-# quick sort function
-quicksort() {
+# Selection sort function
+selection_sort() {
     local -a arr=("$@")
-    if (( ${#arr[@]} <= 1 )); then
-        echo "${arr[*]}"
-    else
-        local pivot=${arr[0]}
-        local -a left=()
-        local -a right=()
-        for ((i = 1; i < ${#arr[@]}; i++)); do
-            if (( ${arr[i]} <= pivot )); then
-                left+=("${arr[i]}")
-                counter=$((counter + 1))
-            else
-                right+=("${arr[i]}")
+    for ((i = 0; i < ${#arr[@]}-1; i++)); do
+        local min_index=$i
+        for ((j = i+1; j < ${#arr[@]}; j++)); do
+            if (( ${arr[j]} < ${arr[min_index]} )); then
+                min_index=$j
                 counter=$((counter + 1))
             fi
         done
-        left=($(quicksort "${left[@]}"))
-        right=($(quicksort "${right[@]}"))
-        echo "${left[@]}" "$pivot" "${right[@]}"
-    fi
+        if (( min_index != i )); then
+            # Swap items
+            temp=${arr[i]}
+            arr[i]=${arr[min_index]}
+            arr[min_index]=$temp
+            counter=$((counter + 1))
+        fi
+    done
 }
 
-quicksort "${numbers[@]}"
+selection_sort "${numbers[@]}"
 
 # Get the current time in seconds since the epoch
 end_time=$(date +%s)
