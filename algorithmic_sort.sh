@@ -34,7 +34,6 @@ bubble_sort() {
         temp=${arr[j]}
         arr[j]=${arr[j+1]}
         arr[j+1]=$temp
-        # increment the counter
         counter=$((counter + 1))
       fi
     done
@@ -75,15 +74,15 @@ quick_sort() {
         for ((i = 1; i < ${#arr[@]}; i++)); do
             if (( ${arr[i]} <= pivot )); then
                 left+=("${arr[i]}")
-                counter=$((counter + 1))
             else
                 right+=("${arr[i]}")
-                counter=$((counter + 1))
             fi
+            counter=$((counter + 1))
         done
         left=($(quick_sort "${left[@]}"))
         right=($(quick_sort "${right[@]}"))
         echo "${left[@]}" "$pivot" "${right[@]}"
+        echo "$counter"
     fi
 }
 
@@ -102,6 +101,7 @@ selection_sort() {
             local temp=${arr[i]}
             arr[i]=${arr[min_idx]}
             arr[min_idx]=$temp
+            counter=$((counter + 1))
         fi
     done
     echo "${arr[@]}"
@@ -151,34 +151,41 @@ echo "4. Selection sort"
 echo "5. Radux sort"
 echo "6. Exit"
 
-read -p "Enter your selections: " -a selections
+read -p "Enter your selections: " -a selection
 
 # Get the current time in seconds since the epoch
 start_time=$(date +%s)
 
 case "$selection" in
     1)
-      sorted=($(bubble_sort "${numbers[@]}") )
+      bubble_sort "${numbers[@]}" > sorted_array.txt
+      choice='bubble'
       ;;
     2)
-      sorted=($(insertion_sort "${numbers[@]}") )
+      insertion_sort "${numbers[@]}" > sorted_array.txt
+      choice='insertion'
       ;;
     3)
-      sorted=($(quick_sort "${numbers[@]}") )
+      quick_sort "${numbers[@]}" > sorted_array.txt
+      choice='quick'
       ;;
     4)
-      sorted=($(selection_sort "${numbers[@]}") )
+      selection_sort "${numbers[@]}" > sorted_array.txt
+      choice='selection'
       ;;
     5) 
-      sorted=($(radix_sort "${numbers[@]}") )
+      radix_sort "${numbers[@]}" > sorted_array.txt
+      choice='radix'
       ;;
     6)
       exit 0
       ;;
+    *)
+      echo "Error: Invalid selection"
+      exit 1
+      ;;
 esac
 
-
-echo "${sorted[@]}" > sorted_array.txt
 
 # Get the current time in seconds since the epoch
 end_time=$(date +%s)
@@ -189,7 +196,7 @@ duration=$((end_time - start_time))
 # Print info
 echo "______________________________" >> statistic.txt
 date >> statistic.txt
-echo "Type sorting: $selections" >> statistic.txt
+echo "Type sorting: $choice" >> statistic.txt
 echo "Time taken: $duration seconds" >> statistic.txt
 echo "Number of elements: $counter2" >> statistic.txt
 echo "Cycle number: $counter" >> statistic.txt
