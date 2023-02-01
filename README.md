@@ -13,7 +13,8 @@ The script takes one argument which is the file containing the array of integers
 
 bash
 Copy code
-./sort.sh file.txt
+
+./sort.sh random_numbers.txt
 
 ## Sorting Algorithms
 The sorting algorithms are implemented in separate functions within the script. They are called based on the desired sorting algorithm.
