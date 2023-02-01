@@ -186,7 +186,6 @@ case "$selection" in
       ;;
 esac
 
-
 # Get the current time in seconds since the epoch
 end_time=$(date +%s)
 
