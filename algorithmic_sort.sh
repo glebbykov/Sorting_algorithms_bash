@@ -74,15 +74,15 @@ quick_sort() {
         for ((i = 1; i < ${#arr[@]}; i++)); do
             if (( ${arr[i]} <= pivot )); then
                 left+=("${arr[i]}")
+                counter=$((counter + 1))
             else
                 right+=("${arr[i]}")
+                counter=$((counter + 1))
             fi
-            counter=$((counter + 1))
         done
         left=($(quick_sort "${left[@]}"))
         right=($(quick_sort "${right[@]}"))
         echo "${left[@]}" "$pivot" "${right[@]}"
-        echo "$counter"
     fi
 }
 
