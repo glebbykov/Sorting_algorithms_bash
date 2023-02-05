@@ -43,19 +43,32 @@ bubble_sort() {
 
 # 2.Insertion sort function
 insertion_sort() {
+    # Declare an array named "arr" and initialize it with the function arguments
     local -a arr=("$@")
+    
+    # Loop through the array starting from the second element (index 1)
     for ((i = 1; i < ${#arr[@]}; i++)); do
+        # Store the current value in a variable
         current_value=${arr[i]}
+        
+        # Set j to the current value of i
         j=$i
+        
+        # Compare the current value with the previous value, shift the previous value right if it's larger, and repeat
         while (( j > 0 && ${arr[j-1]} > current_value )); do
             arr[j]=${arr[j-1]}
             j=$((j-1))
             ((counter++))
         done
+        
+        # Place the current value in its correct position
         arr[j]=$current_value
     done
+    
+    # Print the sorted array
     echo "${arr[*]}"
 }
+
 
 # 3.Quick sort function
 quick_sort() {
