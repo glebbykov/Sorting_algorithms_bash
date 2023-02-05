@@ -135,7 +135,6 @@ radix_sort() {
         arr=()
         for digit in {0..9}; do
             eval "arr+=(\"\${digit_$digit[@]}\")"
-            counter=$((counter + 1))
         done
         radix=$((radix*10))
         counter=$((counter + 1))
