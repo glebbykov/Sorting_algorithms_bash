@@ -2,8 +2,11 @@
 
 filename=random_numbers.txt
 
-# generate 2000 random numbers
-for i in {1..2000}; do
+echo "Enter the number of random numbers to generate: "
+read count
+
+# generate $count random numbers
+for i in $(seq 1 $count); do
     echo -n $((RANDOM % 200001 - 100000)) >> $filename
     echo  >> $filename
 done
@@ -15,6 +18,6 @@ if [ $? -eq 0 ]; then
    exit 1
 fi
 
-echo "2000 random numbers between -100000 and 100000 have been generated and saved in $filename"
+echo "$count random numbers between -100000 and 100000 have been generated and saved in $filename"
 
 ./del_no_num.sh random_numbers.txt
