@@ -137,7 +137,6 @@ radix_sort() {
             eval "arr+=(\"\${digit_$digit[@]}\")"
         done
         radix=$((radix*10))
-        counter=$((counter + 1))
     done
     
     echo "${arr[@]}"
