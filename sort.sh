@@ -85,7 +85,6 @@ quick_sort() {
                 counter=$((counter + 1))
             else
                 right+=("${arr[i]}")
-                counter=$((counter + 1))
             fi
         done
         left=($(quick_sort "${left[@]}"))
