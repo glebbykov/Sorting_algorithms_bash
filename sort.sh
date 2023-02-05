@@ -107,7 +107,6 @@ selection_sort() {
             local temp=${arr[i]}
             arr[i]=${arr[min_idx]}
             arr[min_idx]=$temp
-            counter=$((counter + 1))
         fi
     done
     echo "${arr[@]}"
