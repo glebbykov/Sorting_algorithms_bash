@@ -44,19 +44,14 @@ bubble_sort() {
 # 2.Insertion sort function
 insertion_sort() {
     local -a arr=("$@")
-    # Iterate through the array
     for ((i = 1; i < ${#arr[@]}; i++)); do
-        # Store the current value
         current_value=${arr[i]}
-        # Start the inner loop at the current position
         j=$i
         while (( j > 0 && ${arr[j-1]} > current_value )); do
-            # Shift elements to the right
             arr[j]=${arr[j-1]}
             j=$((j-1))
-            counter=$((counter + 1))
+            ((counter++))
         done
-        # Insert the current value
         arr[j]=$current_value
     done
     echo "${arr[*]}"
