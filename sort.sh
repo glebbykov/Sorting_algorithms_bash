@@ -82,7 +82,6 @@ quick_sort() {
         for ((i = 1; i < ${#arr[@]}; i++)); do
             if (( ${arr[i]} <= pivot )); then
                 left+=("${arr[i]}")
-                counter=$((counter + 1))
             else
                 right+=("${arr[i]}")
             fi
