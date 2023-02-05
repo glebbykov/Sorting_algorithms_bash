@@ -130,7 +130,6 @@ radix_sort() {
         for arr in "${arr[@]}"; do
             local digit=$((arr/radix%10))
             eval "digit_$digit+=($arr)"
-            counter=$((counter + 1))
         done
         
         # Concatenate the digit arrays back into the original array
