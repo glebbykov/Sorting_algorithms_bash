@@ -30,3 +30,6 @@ The sorting algorithms are explained below:
 ## Note
 
 The script checks if the file exists and if it contains only numeric elements before sorting. If either of these checks fails, the script will return an error message and exit with a status code of 1.
+
+## Contributing
+Contributions to this repository are welcome. If you would like to contribute a new sorting algorithm or improve an existing one, please open a pull request.
