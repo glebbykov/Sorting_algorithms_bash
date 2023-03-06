@@ -11,10 +11,9 @@ This repository contains a bash script that sorts an array of integers using 5 d
 
 The script takes one argument which is the file containing the array of integers. The file should contain one integer per line.
 
-bash
-Copy code
-
+```
 ./sort.sh random_numbers.txt
+```
 
 ## Sorting Algorithms
 The sorting algorithms are implemented in separate functions within the script. They are called based on the desired sorting algorithm.
